@@ -1,4 +1,4 @@
-appId: com.electron.app
+appId: fr.baguette.iracing-overlays
 productName: iracing-overlays
 directories:
   buildResources: build

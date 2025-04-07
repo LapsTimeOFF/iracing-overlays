@@ -75,10 +75,15 @@ ipcMain.handle('overlay:open', async () => {
   const overlayWindow = new BrowserWindow({
     width: 410,
     height: 221,
-    frame: false,
+    autoHideMenuBar: true,
     transparent: true,
+    hasShadow: false,
+    alwaysOnTop: true,
+    frame: false,
+    ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
-      preload: join(__dirname, '../preload/index.js')
+      preload: join(__dirname, '../preload/index.js'),
+      sandbox: false
     }
   });
 

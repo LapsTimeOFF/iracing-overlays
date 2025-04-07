@@ -8,6 +8,12 @@ html,
 body {
   height: 100%;
   overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-app-region: drag;
+
+  border: none;
+  background: transparent;
 }
 
 .rpm-value {
@@ -304,4 +310,37 @@ body {
   position: absolute;
   top: 38px;
   right: 37px;
+}
+
+.blinking-led {
+  fill: #8080ff;
+  animation: blinkFill 0.5s steps(1, end) infinite;
+}
+
+@keyframes blinkFill {
+  0% {
+    fill: #8080ff;
+  }
+  50% {
+    fill: #666666;
+  }
+  100% {
+    fill: #8080ff;
+  }
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #fff;
 }

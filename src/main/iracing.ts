@@ -15,22 +15,35 @@ export const initIRacing = (window: WebContents): void => {
 
   console.log('iRacing SDK initialized');
 
-  iracing.on('Connected', () => {
+  iracing.once('Connected', () => {
     console.log('Connected to iRacing');
 
     iracing.once('Disconnected', () => {
       console.log('Disconnected from iRacing');
-      iracing = null;
     });
 
     iracing.on('Telemetry', (data) => {
       // Send telemetry data to renderer process
-      window.send('iracing:telemetry', data);
+      try {
+        window.send('iracing:telemetry', data);
+      } catch (e) {
+        console.error(e);
+        if (iracing?.IrSdkWrapper?.shutdown) iracing.IrSdkWrapper.shutdown();
+        iracing = null;
+        process.exit(0);
+      }
     });
 
     iracing.on('SessionInfo', (data) => {
-      // Send session info data to renderer process
-      window.send('iracing:sessionInfo', data);
+      try {
+        // Send session info data to renderer process
+        window.send('iracing:sessionInfo', data);
+      } catch (e) {
+        console.error(e);
+        if (iracing?.IrSdkWrapper?.shutdown) iracing.IrSdkWrapper.shutdown();
+        iracing = null;
+        process.exit(0);
+      }
     });
   });
 };

@@ -1,6 +1,6 @@
 {
   "name": "iracing-overlays",
-  "version": "1.0.0",
+  "version": "1.0.0-beta1",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
   "author": "Baguette <contact@lapstime.fr>",

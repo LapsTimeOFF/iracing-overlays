@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { createHashRouter, RouterProvider } from 'react-router';
 import Overlay from './Overlay';
+import OverlayFlip from './Flip';
 
 const router = createHashRouter([
   {
@@ -12,8 +13,12 @@ const router = createHashRouter([
     element: <App />
   },
   {
-    path: '/overlay',
+    path: '/overlay-ivy',
     element: <Overlay />
+  },
+  {
+    path: '/overlay-flip',
+    element: <OverlayFlip />
   }
 ]);
 

@@ -71,7 +71,8 @@ app.on('window-all-closed', () => {
   }
 });
 
-ipcMain.handle('overlay:open', async () => {
+ipcMain.handle('overlay:open', async (_, name: string) => {
+  console.log('Opening overlay: ' + name);
   const overlayWindow = new BrowserWindow({
     width: 410,
     height: 221,
@@ -90,9 +91,11 @@ ipcMain.handle('overlay:open', async () => {
   overlayWindow.setAlwaysOnTop(true);
 
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    overlayWindow.loadURL(process.env['ELECTRON_RENDERER_URL'] + '#/overlay');
+    overlayWindow.loadURL(process.env['ELECTRON_RENDERER_URL'] + '#/overlay-' + name);
   } else {
-    overlayWindow.loadFile(join(__dirname, '../renderer/index.html') + '#/overlay');
+    overlayWindow.loadURL(
+      'file:///' + join(__dirname, '../renderer/index.html') + '#/overlay-' + name
+    );
   }
 });
 

@@ -20,8 +20,8 @@ export const api = {
       ipcRenderer.removeAllListeners('iracing:sessionInfo');
     }
   },
-  openOverlay: (): void => {
-    ipcRenderer.invoke('overlay:open');
+  openOverlay: (name: string): void => {
+    ipcRenderer.invoke('overlay:open', name);
   }
 };
 

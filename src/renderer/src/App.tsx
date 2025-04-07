@@ -5,11 +5,19 @@ function App(): JSX.Element {
     <>
       <button
         onClick={(): void => {
-          window.api.openOverlay();
+          window.api.openOverlay('ivy');
         }}
         className="overlay-button"
       >
-        Open Overlay
+        Open Overlay Ivy
+      </button>
+      <button
+        onClick={(): void => {
+          window.api.openOverlay('flip');
+        }}
+        className="overlay-button"
+      >
+        Open Overlay Flip
       </button>
       <Versions />
     </>

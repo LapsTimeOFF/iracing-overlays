@@ -1,0 +1,46 @@
+.positive-flip {
+  color: #e138ff;
+}
+
+.ers-value-flip {
+  color: #e138ff;
+
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -1.92px;
+
+  position: absolute;
+  bottom: 18px;
+  width: 100%;
+}
+
+.brake-progress-flip {
+  height: 20px;
+
+  position: absolute;
+
+  top: 140px;
+  right: 243px;
+
+  background: #e138ff;
+}
+
+.blinking-led-flip {
+  fill: #e138ff;
+  animation: blinkFill-flip 0.5s steps(1, end) infinite;
+}
+
+@keyframes blinkFill-flip {
+  0% {
+    fill: #e138ff;
+  }
+  50% {
+    fill: #666666;
+  }
+  100% {
+    fill: #e138ff;
+  }
+}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import background from './assets/Background.png';
 
-import './assets/overlay.css';
+import './assets/overlay-flip.css';
 import { Telemetry } from './types/telemetry';
 import { SessionInfo } from './types/sessiondata';
 import { JSONTree } from 'react-json-tree';
@@ -23,19 +23,19 @@ const getBatteryModeName = (mode: number): string => {
   }
 };
 
-const Overlay = (): JSX.Element => {
+const OverlayFlip = (): JSX.Element => {
   const [blink, setBlink] = useState<boolean>(false);
   const [telemetry, setTelemetry] = useState<Telemetry>();
   const [sessionInfo, setSessionInfo] = useState<SessionInfo>();
   const [rpmLight, setRpmLight] = useState<string[]>([
     '#666666', // grey
     '#50FF50', // green
-    '#8080FF', // blue
+    '#E138FF', // blue
     '#FFFF59', // yellow
-    '#FF5959', // red
-    '#FF5959',
+    '#e138ff', // red
+    '#e138ff',
     '#FFFF59',
-    '#8080FF',
+    '#E138FF',
     '#50FF50',
     '#666666'
   ]);
@@ -45,6 +45,7 @@ const Overlay = (): JSX.Element => {
 
     window.api.iracing.onTelemetry((data: unknown) => {
       setTelemetry(data as Telemetry);
+      console.log(JSON.stringify(data));
 
       const d = data as Telemetry;
 
@@ -112,8 +113,8 @@ const Overlay = (): JSX.Element => {
           '#50FF50',
           '#FFFF59',
           '#FFFF59',
-          '#FF5959',
-          '#FF5959',
+          '#e138ff',
+          '#e138ff',
           '#FFFF59',
           '#FFFF59',
           '#50FF50',
@@ -122,16 +123,16 @@ const Overlay = (): JSX.Element => {
         setBlink(false);
       } else if (rpm >= 8000) {
         setRpmLight([
-          '#8080FF',
-          '#8080FF',
-          '#8080FF',
-          '#8080FF',
-          '#8080FF',
-          '#8080FF',
-          '#8080FF',
-          '#8080FF',
-          '#8080FF',
-          '#8080FF'
+          '#E138FF',
+          '#E138FF',
+          '#E138FF',
+          '#E138FF',
+          '#E138FF',
+          '#E138FF',
+          '#E138FF',
+          '#E138FF',
+          '#E138FF',
+          '#E138FF'
         ]);
         setBlink(true);
       } else {
@@ -183,35 +184,35 @@ const Overlay = (): JSX.Element => {
               cy="7.5"
               r="7.5"
               fill={rpmLight[0]}
-              className={blink ? 'blinking-led' : ''}
+              className={blink ? 'blinking-led-flip' : ''}
             />
             <circle
               cx="36.5"
               cy="7.5"
               r="7.5"
               fill={rpmLight[1]}
-              className={blink ? 'blinking-led' : ''}
+              className={blink ? 'blinking-led-flip' : ''}
             />
             <circle
               cx="65.5"
               cy="7.5"
               r="7.5"
               fill={rpmLight[2]}
-              className={blink ? 'blinking-led' : ''}
+              className={blink ? 'blinking-led-flip' : ''}
             />
             <circle
               cx="94.5"
               cy="7.5"
               r="7.5"
               fill={rpmLight[3]}
-              className={blink ? 'blinking-led' : ''}
+              className={blink ? 'blinking-led-flip' : ''}
             />
             <circle
               cx="127.5"
               cy="7.5"
               r="7.5"
               fill={rpmLight[4]}
-              className={blink ? 'blinking-led' : ''}
+              className={blink ? 'blinking-led-flip' : ''}
             />
           </svg>
         </div>
@@ -229,35 +230,35 @@ const Overlay = (): JSX.Element => {
               cy="7.5"
               r="7.5"
               fill={rpmLight[5]}
-              className={blink ? 'blinking-led' : ''}
+              className={blink ? 'blinking-led-flip' : ''}
             />
             <circle
               cx="42.5"
               cy="7.5"
               r="7.5"
               fill={rpmLight[6]}
-              className={blink ? 'blinking-led' : ''}
+              className={blink ? 'blinking-led-flip' : ''}
             />
             <circle
               cx="71.5"
               cy="7.5"
               r="7.5"
               fill={rpmLight[7]}
-              className={blink ? 'blinking-led' : ''}
+              className={blink ? 'blinking-led-flip' : ''}
             />
             <circle
               cx="100.5"
               cy="7.5"
               r="7.5"
               fill={rpmLight[8]}
-              className={blink ? 'blinking-led' : ''}
+              className={blink ? 'blinking-led-flip' : ''}
             />
             <circle
               cx="129.5"
               cy="7.5"
               r="7.5"
               fill={rpmLight[9]}
-              className={blink ? 'blinking-led' : ''}
+              className={blink ? 'blinking-led-flip' : ''}
             />
           </svg>
         </div>
@@ -281,7 +282,7 @@ const Overlay = (): JSX.Element => {
       <p className="speed-value">{Math.round(telemetry.values.Speed * 3.6)}</p>
 
       <p
-        className={`relative-value ${telemetry.values.LapDeltaToBestLap > 0 ? 'positive' : 'negative'}`}
+        className={`relative-value ${telemetry.values.LapDeltaToBestLap > 0 ? 'positive-flip' : 'negative'}`}
       >
         {(telemetry.values.LapDeltaToBestLap < 0 ? '-' : '') +
           telemetry.values.LapDeltaToBestLap.toFixed(2)}
@@ -301,14 +302,14 @@ const Overlay = (): JSX.Element => {
 
       <div className="ers">
         <p className="ers-label">ERS</p>
-        <p className="ers-value">{Math.round(telemetry.values.EnergyERSBatteryPct * 100)}</p>
+        <p className="ers-value-flip">{Math.round(telemetry.values.EnergyERSBatteryPct * 100)}</p>
         <p className="ers-mode">{getBatteryModeName(telemetry.values.dcMGUKDeployMode)}</p>
       </div>
 
       <div className="brake">
         <div className="brake-bg"></div>
         <div
-          className="brake-progress"
+          className="brake-progress-flip"
           style={{
             width: `${(telemetry.values.Brake * 100 * 137) / 100}px` // math: brake * 137 / 100 + 'px',
           }}
@@ -334,4 +335,4 @@ const Overlay = (): JSX.Element => {
   );
 };
 
-export default Overlay;
+export default OverlayFlip;

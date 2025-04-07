@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import background from './assets/Background.png';
 
 import './assets/overlay.css';
@@ -19,7 +18,7 @@ const Overlay = (): JSX.Element => {
           >
             <circle cx="7.5" cy="7.5" r="7.5" fill="#666666" />
             <circle cx="36.5" cy="7.5" r="7.5" fill="#50FF50" />
-            <circle cx="65.5" cy="7.5" r="7.5" fill="#666666" />
+            <circle cx="65.5" cy="7.5" r="7.5" fill="#8080FF" />
             <circle cx="94.5" cy="7.5" r="7.5" fill="#FFFF59" />
             <circle cx="127.5" cy="7.5" r="7.5" fill="#FF5959" />
           </svg>
@@ -35,7 +34,7 @@ const Overlay = (): JSX.Element => {
           >
             <circle cx="7.5" cy="7.5" r="7.5" fill="#FF5959" />
             <circle cx="42.5" cy="7.5" r="7.5" fill="#FFFF59" />
-            <circle cx="71.5" cy="7.5" r="7.5" fill="#666666" />
+            <circle cx="71.5" cy="7.5" r="7.5" fill="#8080FF" />
             <circle cx="100.5" cy="7.5" r="7.5" fill="#50FF50" />
             <circle cx="129.5" cy="7.5" r="7.5" fill="#666666" />
           </svg>
